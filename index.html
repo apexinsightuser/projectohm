@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibra | The Frequency of Taste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --indigo-dark: #0a0c1f;
+            --indigo-main: #101430;
+            --indigo-light: #1e2450;
+            --amber-glow: #FF8C00;
+            --amber-bright: #ffbf00;
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
+            --easing: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--indigo-dark);
+            background: radial-gradient(circle at 50% -20%, var(--indigo-light), var(--indigo-dark) 80%);
+            color: var(--text-main);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- Animations & Utilities --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s var(--easing), transform 1s var(--easing);
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Background Audio Visualizer (Canvas) --- */
+        #noise-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: exclusion;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            color: var(--amber-bright);
+            text-transform: uppercase;
+        }
+
+        .status {
+            font-size: 0.8rem;
+            color: var(--amber-glow);
+            border: 1px solid var(--amber-glow);
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* --- Section 1: Mission --- */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.mission-sub {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sound Wave Animation Bars */
+        .sound-wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            height: 60px;
+            margin-bottom: 2rem;
+        }
+
+        .bar {
+            width: 6px;
+            background: var(--amber-glow);
+            border-radius: 4px;
+            animation: bounce 1.2s infinite ease-in-out;
+            box-shadow: 0 0 15px var(--amber-glow);
+        }
+
+        @keyframes bounce {
+            0%, 100% { height: 10px; opacity: 0.5; }
+            50% { height: 50px; opacity: 1; }
+        }
+
+        .bar:nth-child(1) { animation-delay: 0.1s; }
+        .bar:nth-child(2) { animation-delay: 0.3s; }
+        .bar:nth-child(3) { animation-delay: 0.5s; }
+        .bar:nth-child(4) { animation-delay: 0.2s; }
+        .bar:nth-child(5) { animation-delay: 0.4s; }
+
+        /* --- Section 2: Concept --- */
+        .concept-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .concept-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--indigo-light), #000);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        /* Abstract Network Animation in CSS */
+        .node {
+            position: absolute;
+            background: var(--amber-bright);
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.8;
+            animation: floatNode 10s infinite alternate;
+        }
+
+        .node-connection {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200%;
+            height: 1px;
+            background: radial-gradient(circle, var(--amber-glow) 0%, transparent 70%);
+            transform-origin: left;
+            animation: spin 20s linear infinite;
+            opacity: 0.2;
+        }
+
+        @keyframes floatNode {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, -30px); }
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .concept-text h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            color: var(--amber-bright);
+        }
+
+        .concept-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            border-left: 2px solid var(--amber-glow);
+            padding-left: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+        .feature-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+        .feature-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--amber-glow);
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px var(--amber-glow);
+        }
+
+        /* --- Section 3: Call to Action --- */
+        .cta-container {
+            text-align: center;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4rem 2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 140, 0, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 100px rgba(16, 20, 48, 0.8);
+        }
+
+        .cta-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: 0.3s;
+            outline: none;
+        }
+
+        input[type="email"]:focus {
+            border-color: var(--amber-glow);
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.1);
+        }
+
+        button.submit-btn {
+            padding: 1.2rem;
+            background: var(--amber-glow);
+            color: #000;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--easing);
+            letter-spacing: 1px;
+        }
+
+        button.submit-btn:hover {
+            background: var(--amber-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+        }
+
+        .disclaimer {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+
+        /* Success Message State */
+        .success-message {
+            display: none;
+            color: var(--amber-bright);
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .concept-container {
+                grid-template-columns: 1fr;
+            }
+            .concept-visual {
+                height: 250px;
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="noise-canvas"></canvas>
+
+    <header class="fade-in-up">
+        <div class="logo">Vibra.</div>
+        <div class="status">● Waitlist Active</div>
+    </header>
+
+    <section class="section" id="mission">
+        <div class="hero-content">
+            <div class="sound-wave fade-in-up">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <h1 class="fade-in-up" style="transition-delay: 0.2s;">We don't share music.<br>We route frequencies.</h1>
+            <p class="mission-sub fade-in-up" style="transition-delay: 0.4s;">
+                An invite-only ecosystem where your taste is the currency and the algorithm serves the connection, not the crowd.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="concept">
+        <div class="concept-container">
+            <div class="concept-text fade-in-up">
+                <h2>The Feedback Loop</h2>
+                <p>
+                    Vibra quantifies your sonic identity through location, astrology, and listening history. 
+                    Share a track, and our routing engine delivers it only to the most compatible listeners in the network.
+                </p>
+                <ul class="feature-list">
+                    <li>Algorithmic compatibility routing</li>
+                    <li>Social validation & reward mechanics</li>
+                    <li>Status-driven discovery economy</li>
+                </ul>
+            </div>
+            <div class="concept-visual fade-in-up" style="transition-delay: 0.2s;">
+                <div class="node-connection"></div>
+                <div class="node" style="top: 20%; left: 20%; width: 10px; height: 10px;"></div>
+                <div class="node" style="top: 70%; left: 80%; width: 15px; height: 15px; animation-delay: 1s;"></div>
+                <div class="node" style="top: 50%; left: 50%; width: 50px; height: 50px; filter: blur(10px); opacity: 0.4;"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="access">
+        <div class="cta-container fade-in-up">
+            <h2>Secure Your Frequency</h2>
+            <p style="color: var(--text-muted);">Access is granted in waves based on taste compatibility. Enter your email to begin the intake protocol.</p>
+            
+            <form class="form-group" id="guestlist-form">
+                <input type="email" placeholder="enter_email_address" required>
+                <button type="submit" class="submit-btn">Request Guest List Access</button>
+            </form>
+
+            <div class="success-message" id="success-msg">
+                Profile Initiated. Check your inbox for the Taste Questionnaire.
+            </div>
+
+            <p class="disclaimer">Vibra is currently iOS only. Invitation codes are non-transferable.</p>
+        </div>
+    </section>
+
+    <script>
+        // --- 1. Interactive Canvas Background (Subtle Particles) ---
+        const canvas = document.getElementById('noise-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
+                this.alpha = Math.random() * 0.5;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(255, 140, 0, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        initParticles();
+        animateParticles();
+
+        // --- 2. Scroll Observer for Fade-in Effects ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- 3. Form Handling ---
+        const form = document.getElementById('guestlist-form');
+        const successMsg = document.getElementById('success-msg');
+        const btn = document.querySelector('.submit-btn');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate API loading
+            btn.innerHTML = "Quantifying...";
+            btn.style.opacity = "0.7";
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+                successMsg.classList.add('fade-in-up', 'visible');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
