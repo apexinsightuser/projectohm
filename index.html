@@ -10,16 +10,16 @@
     
     <style>
         :root {
-            /* NEW PALETTE */
-            --bg-cyan: #2FA4A9;       /* Luminous Cyan */
-            --bg-deep: #1A6B6F;       /* Deep Teal for gradient depth */
-            --bg-darkest: #0F3F42;    /* Darkest shade for contrast */
+            /* PALETTE: Luminous Cyan / Soft Alabaster / Polished Honey Gold */
+            --bg-cyan: #2FA4A9;       
+            --bg-deep: #1A6B6F;       
+            --bg-darkest: #0F3F42;    
             
-            --text-cream: #FBF6EE;    /* Soft Alabaster */
-            --text-muted: #CFDCE0;    /* Muted cool grey-cyan */
+            --text-cream: #FBF6EE;    
+            --text-muted: #CFDCE0;    
             
-            --accent-gold: #D4B86A;   /* Polished Honey Gold */
-            --accent-glow: #F2DFA6;   /* Lighter gold for hover/glow */
+            --accent-gold: #D4B86A;   
+            --accent-glow: #F2DFA6;   
             
             --easing: cubic-bezier(0.23, 1, 0.32, 1);
         }
@@ -32,7 +32,6 @@
 
         body {
             background-color: var(--bg-cyan);
-            /* Radial gradient: Bright top, fading to deep teal for text readability */
             background: radial-gradient(circle at 50% -20%, #68D1D5, var(--bg-cyan) 40%, var(--bg-deep) 80%, var(--bg-darkest) 100%);
             color: var(--text-cream);
             font-family: 'Space Grotesk', sans-serif;
@@ -92,7 +91,7 @@
             border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            background: rgba(47, 164, 169, 0.3); /* Transparent Cyan */
+            background: rgba(47, 164, 169, 0.3);
             backdrop-filter: blur(5px);
         }
 
@@ -118,7 +117,6 @@
             line-height: 0.95;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
-            /* Gradient Text: Alabaster to Honey Gold */
             background: linear-gradient(180deg, var(--text-cream) 20%, var(--accent-gold) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -131,7 +129,6 @@
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Sound Wave Animation Bars */
@@ -149,7 +146,7 @@
             background: var(--accent-gold);
             border-radius: 4px;
             animation: bounce 1.2s infinite ease-in-out;
-            box-shadow: 0 0 15px rgba(212, 184, 106, 0.5); /* Gold glow */
+            box-shadow: 0 0 15px rgba(212, 184, 106, 0.5);
         }
 
         @keyframes bounce {
@@ -175,10 +172,9 @@
         .concept-visual {
             position: relative;
             height: 400px;
-            /* Luminous Cyan to Darkest Teal gradient */
             background: linear-gradient(135deg, var(--bg-cyan), var(--bg-darkest));
             border-radius: 20px;
-            border: 1px solid rgba(251, 246, 238, 0.2); /* Alabaster border */
+            border: 1px solid rgba(251, 246, 238, 0.2);
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(15, 63, 66, 0.4);
             display: flex;
@@ -207,7 +203,6 @@
             animation: spinRecord 6s linear infinite;
         }
 
-        /* Grooves */
         .record::before {
             content: '';
             position: absolute;
@@ -215,15 +210,9 @@
             transform: translate(-50%, -50%);
             width: 190px; height: 190px;
             border-radius: 50%;
-            background: repeating-radial-gradient(
-                #121212 0, 
-                #121212 2px, 
-                #222 3px, 
-                #222 4px
-            );
+            background: repeating-radial-gradient(#121212 0, #121212 2px, #222 3px, #222 4px);
         }
 
-        /* Label */
         .record-label {
             position: absolute;
             top: 50%; left: 50%;
@@ -238,7 +227,6 @@
             box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
         }
 
-        /* Spindle Hole */
         .record-label::after {
             content: '';
             width: 8px;
@@ -247,7 +235,6 @@
             border-radius: 50%;
         }
 
-        /* Ambient Sound Waves */
         .wave {
             position: absolute;
             top: 50%; left: 50%;
@@ -264,16 +251,11 @@
         .wave.delay-1 { animation-delay: 1s; }
         .wave.delay-2 { animation-delay: 2s; }
 
-        @keyframes spinRecord {
-            100% { transform: rotate(360deg); }
-        }
-
+        @keyframes spinRecord { 100% { transform: rotate(360deg); } }
         @keyframes pulseWave {
             0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; border-width: 3px; }
             100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; border-width: 0px; }
         }
-
-        /* --- End Animation --- */
 
         .concept-text h2 {
             font-size: clamp(2rem, 4vw, 3.5rem);
@@ -289,9 +271,7 @@
             padding-left: 1.5rem;
         }
 
-        .feature-list {
-            list-style: none;
-        }
+        .feature-list { list-style: none; }
         .feature-list li {
             margin-bottom: 1rem;
             display: flex;
@@ -309,32 +289,48 @@
             box-shadow: 0 0 10px var(--accent-gold);
         }
 
-        /* --- Section 3: Call to Action --- */
+        /* --- Section 3: Call to Action (Form) --- */
         .cta-container {
             text-align: center;
-            max-width: 600px;
-            background: rgba(251, 246, 238, 0.08); /* Alabaster tint */
-            padding: 4rem 2rem;
+            max-width: 700px;
+            width: 95%;
+            background: rgba(251, 246, 238, 0.08);
+            padding: 3rem 2rem;
             border-radius: 30px;
-            border: 1px solid rgba(212, 184, 106, 0.3); /* Gold border */
+            border: 1px solid rgba(212, 184, 106, 0.3);
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 100px rgba(15, 63, 66, 0.3); /* Dark teal shadow */
+            box-shadow: 0 0 100px rgba(15, 63, 66, 0.3);
+            transition: height 0.3s ease;
         }
 
         .cta-container h2 {
             font-size: 2.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: var(--text-cream);
         }
 
-        .form-group {
-            position: relative;
+        /* Form Steps Logic */
+        .step-2 { display: none; text-align: left; }
+        
+        .form-section-title {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(212, 184, 106, 0.3);
+            padding-bottom: 0.5rem;
         }
 
+        .question-label {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 600;
+        }
+
+        /* Input Styling */
         input[type="email"] {
             width: 100%;
             padding: 1.2rem;
@@ -346,22 +342,19 @@
             font-size: 1rem;
             transition: 0.3s;
             outline: none;
+            margin-bottom: 1.5rem;
         }
-
-        input[type="email"]::placeholder {
-            color: rgba(251, 246, 238, 0.5);
-        }
-
         input[type="email"]:focus {
             border-color: var(--accent-gold);
             background: rgba(15, 63, 66, 0.6);
-            box-shadow: 0 0 20px rgba(212, 184, 106, 0.2);
         }
 
+        /* Button Styling */
         button.submit-btn {
+            width: 100%;
             padding: 1.2rem;
             background: var(--accent-gold);
-            color: #0F3F42; /* Darkest Teal for contrast on Gold */
+            color: #0F3F42;
             border: none;
             border-radius: 12px;
             font-weight: 700;
@@ -370,38 +363,117 @@
             cursor: pointer;
             transition: all 0.3s var(--easing);
             letter-spacing: 1px;
+            margin-top: 1rem;
         }
-
         button.submit-btn:hover {
             background: var(--accent-glow);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(212, 184, 106, 0.4);
         }
 
-        .disclaimer {
-            margin-top: 1.5rem;
+        /* --- Slider Customization --- */
+        .slider-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        .slider-wrapper span { font-size: 0.8rem; opacity: 0.7; }
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px; width: 20px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(212, 184, 106, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px;
+            cursor: pointer;
+            background: rgba(15, 63, 66, 0.6);
+            border-radius: 2px;
+        }
+
+        /* --- Checkbox & Radio Customization --- */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .custom-option {
+            display: block;
+            position: relative;
+            padding: 15px 15px 15px 45px;
+            border: 1px solid rgba(251, 246, 238, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            background: rgba(15, 63, 66, 0.2);
+        }
+
+        .custom-option:hover {
+            background: rgba(15, 63, 66, 0.4);
+            border-color: rgba(212, 184, 106, 0.5);
+        }
+
+        .custom-option input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Custom Checkmark/Radio indicator */
+        .checkmark {
+            position: absolute;
+            top: 18px; left: 15px;
+            height: 18px; width: 18px;
+            background-color: transparent;
+            border: 2px solid var(--text-muted);
+            border-radius: 4px; /* Square for checkbox */
+        }
+        
+        /* Radio specific radius */
+        .radio-mark { border-radius: 50%; }
+
+        /* Checked State */
+        .custom-option input:checked ~ .checkmark {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        /* Highlight the whole box when checked */
+        .custom-option:has(input:checked) {
+            background: rgba(212, 184, 106, 0.1);
+            border-color: var(--accent-gold);
+        }
+
+        /* Subtext inside labels */
+        .sub-label {
+            display: block;
             font-size: 0.8rem;
             color: var(--text-muted);
-            opacity: 0.8;
+            margin-top: 4px;
+            font-weight: 300;
         }
 
-        /* Success Message State */
-        .success-message {
-            display: none;
-            color: var(--accent-gold);
-            margin-top: 20px;
-            font-weight: 600;
-        }
+        /* Messages */
+        .disclaimer { margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); opacity: 0.8; }
+        .success-message { display: none; color: var(--accent-gold); margin-top: 20px; font-weight: 600; font-size: 1.2rem; }
 
-        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .concept-container {
-                grid-template-columns: 1fr;
-            }
-            .concept-visual {
-                height: 300px;
-                order: -1;
-            }
+            .concept-container { grid-template-columns: 1fr; }
+            .concept-visual { height: 300px; order: -1; }
         }
     </style>
 </head>
@@ -450,28 +522,133 @@
                     <div class="wave"></div>
                     <div class="wave delay-1"></div>
                     <div class="wave delay-2"></div>
-                    
                     <div class="record">
                         <div class="record-label"></div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 
     <section class="section" id="access">
         <div class="cta-container fade-in-up">
-            <h2>Secure Your Frequency</h2>
-            <p style="color: var(--text-cream); opacity: 0.8;">Access is granted in waves based on taste compatibility. Enter your email to begin the intake protocol.</p>
-            
-            <form class="form-group" id="guestlist-form">
-                <input type="email" placeholder="enter_email_address" required>
-                <button type="submit" class="submit-btn">Request Guest List Access</button>
-            </form>
+            <div id="form-content">
+                <h2>Secure Your Frequency</h2>
+                <p id="form-desc" style="color: var(--text-cream); opacity: 0.8; margin-bottom: 2rem;">Access is granted in waves. Complete the profile intake to request your invite.</p>
+                
+                <form id="vibra-form" action="https://formspree.io/f/xdaakjnz" method="POST">
+                    
+                    <div class="step-1">
+                        <input type="email" name="email" id="email-input" placeholder="enter_email_address" required>
+                        <button type="button" class="submit-btn" id="next-btn">Begin Intake Protocol</button>
+                    </div>
+
+                    <div class="step-2">
+                        
+                        <div class="form-section-title">Section 1: Status Sensitivity</div>
+                        <label class="question-label">How important is exclusivity in a music-sharing app to you?</label>
+                        <div class="slider-wrapper">
+                            <span>Not Important (1)</span>
+                            <input type="range" name="exclusivity_score" min="1" max="7" value="4" oninput="document.getElementById('slider-val').innerText = this.value">
+                            <span>Extremely (7)</span>
+                        </div>
+                        <div style="text-align: center; color: var(--accent-gold); font-weight: bold; margin-bottom: 2rem;">Selected: <span id="slider-val">4</span></div>
+
+                        <div class="form-section-title">Section 2: Functionality</div>
+                        <label class="question-label">Which features would make you return regularly? (Select up to 3)</label>
+                        <div class="option-group" id="feature-group">
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Taste-matched sharing">
+                                <span class="checkmark"></span>
+                                Taste-matched song sharing
+                                <span class="sub-label">Songs are shared only with people whose taste aligns with mine</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Feedback & reactions">
+                                <span class="checkmark"></span>
+                                Feedback & reactions
+                                <span class="sub-label">Likes, emotional reactions, or short responses</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Reputation / taste score">
+                                <span class="checkmark"></span>
+                                Reputation / taste score
+                                <span class="sub-label">My sharing quality improves my visibility or status</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Human discovery feed">
+                                <span class="checkmark"></span>
+                                Human discovery feed
+                                <span class="sub-label">Music discovery feed curated by people (not algorithms)</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Personal discography">
+                                <span class="checkmark"></span>
+                                Personal discography
+                                <span class="sub-label">My profile becomes a reflection of my taste over time</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Rewards">
+                                <span class="checkmark"></span>
+                                Rewards for great shares
+                                <span class="sub-label">Unlocks, visibility boosts, or badges</span>
+                            </label>
+                            <label class="custom-option">
+                                <input type="checkbox" name="features" value="Minimal experience">
+                                <span class="checkmark"></span>
+                                Minimal experience
+                                <span class="sub-label">No ads, no noise, just music and feedback</span>
+                            </label>
+                        </div>
+
+                        <div class="form-section-title">Section 3: Motivation</div>
+                        <label class="question-label">What would motivate you to share consistently?</label>
+                        <div class="option-group">
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Feeling understood" required>
+                                <span class="checkmark radio-mark"></span>
+                                Feeling understood for my taste
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Gaining status">
+                                <span class="checkmark radio-mark"></span>
+                                Gaining recognition or status
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Helping others">
+                                <span class="checkmark radio-mark"></span>
+                                Helping others discover great music
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Strengthening relationships">
+                                <span class="checkmark radio-mark"></span>
+                                Strengthening relationships with friends
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Self-expression">
+                                <span class="checkmark radio-mark"></span>
+                                Self-expression / identity building
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Habitual entertainment">
+                                <span class="checkmark radio-mark"></span>
+                                Habitual entertainment
+                            </label>
+                            <label class="custom-option">
+                                <input type="radio" name="motivation" value="Wont share consistently">
+                                <span class="checkmark radio-mark"></span>
+                                I wouldn’t share consistently
+                            </label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Complete Application</button>
+                    </div>
+                </form>
+            </div>
 
             <div class="success-message" id="success-msg">
-                Profile Initiated. Check your inbox for the Taste Questionnaire.
+                Signal Received.<br>
+                <span style="font-size: 0.9rem; color: var(--text-cream); font-weight: 400;">Your profile is being analyzed. Watch your inbox.</span>
             </div>
 
             <p class="disclaimer">Vibra is currently iOS only. Invitation codes are non-transferable.</p>
@@ -479,12 +656,10 @@
     </section>
 
     <script>
-        // --- 1. Interactive Canvas Background (Particles) ---
+        // --- 1. Interactive Canvas (Particles) ---
         const canvas = document.getElementById('noise-canvas');
         const ctx = canvas.getContext('2d');
-        
-        let width, height;
-        let particles = [];
+        let width, height, particles = [];
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -500,19 +675,15 @@
                 this.size = Math.random() * 2;
                 this.alpha = Math.random() * 0.5;
             }
-
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-
                 if (this.x < 0) this.x = width;
                 if (this.x > width) this.x = 0;
                 if (this.y < 0) this.y = height;
                 if (this.y > height) this.y = 0;
             }
-
             draw() {
-                // Polished Honey Gold: RGB(212, 184, 106)
                 ctx.fillStyle = `rgba(212, 184, 106, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -522,60 +693,91 @@
 
         function initParticles() {
             particles = [];
-            for (let i = 0; i < 60; i++) {
-                particles.push(new Particle());
-            }
+            for (let i = 0; i < 60; i++) particles.push(new Particle());
         }
 
         function animateParticles() {
             ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+            particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
 
         window.addEventListener('resize', resize);
-        resize();
-        initParticles();
-        animateParticles();
+        resize(); initParticles(); animateParticles();
 
-        // --- 2. Scroll Observer for Fade-in Effects ---
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        };
-
+        // --- 2. Scroll Observer ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // --- 3. Form Logic ---
+        const form = document.getElementById('vibra-form');
+        const nextBtn = document.getElementById('next-btn');
+        const step1 = document.querySelector('.step-1');
+        const step2 = document.querySelector('.step-2');
+        const formContent = document.getElementById('form-content');
+        const successMsg = document.getElementById('success-msg');
+        const emailInput = document.getElementById('email-input');
+
+        // Transition from Email to Questions
+        nextBtn.addEventListener('click', () => {
+            if(emailInput.checkValidity() && emailInput.value !== "") {
+                step1.style.display = 'none';
+                step2.style.display = 'block';
+                // Scroll to top of questions smoothly
+                document.getElementById('access').scrollIntoView({behavior: 'smooth'});
+            } else {
+                emailInput.reportValidity();
+            }
         });
 
-        // --- 3. Form Handling ---
-        const form = document.getElementById('guestlist-form');
-        const successMsg = document.getElementById('success-msg');
-        const btn = document.querySelector('.submit-btn');
+        // Limit Checkboxes to 3
+        const checkboxes = document.querySelectorAll('input[name="features"]');
+        checkboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                const checked = document.querySelectorAll('input[name="features"]:checked');
+                if (checked.length > 3) {
+                    box.checked = false;
+                }
+            });
+        });
 
-        form.addEventListener('submit', (e) => {
+        // Formspree Submission AJAX
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Simulate API loading
-            btn.innerHTML = "Quantifying...";
-            btn.style.opacity = "0.7";
-            
-            setTimeout(() => {
-                form.style.display = 'none';
-                successMsg.style.display = 'block';
-                successMsg.classList.add('fade-in-up', 'visible');
-            }, 1500);
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.innerText = "Transmitting...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formContent.style.display = 'none';
+                    successMsg.style.display = 'block';
+                    successMsg.classList.add('fade-in-up', 'visible');
+                } else {
+                    alert("Transmission error. Please try again.");
+                    submitBtn.innerText = "Complete Application";
+                    submitBtn.disabled = false;
+                }
+            } catch (error) {
+                alert("Connection failed. Please check your network.");
+                submitBtn.innerText = "Complete Application";
+                submitBtn.disabled = false;
+            }
         });
     </script>
 </body>
