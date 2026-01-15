@@ -11,14 +11,14 @@
     <style>
         :root {
             /* NEW PALETTE */
-            --bg-dark: #0F2A1D;       /* Deep Forest Green */
-            --bg-light: #1A3E2D;      /* Slightly lighter green for gradients */
+            --bg-core: #18181B;       /* Midnight Charcoal */
+            --bg-lighter: #27272a;    /* Lighter charcoal for gradients */
             
-            --text-main: #F4EFEA;     /* Warm Cream */
-            --text-muted: #A8B5AD;    /* Muted greenish-grey for secondary text */
+            --text-main: #F2E8CF;     /* Soft Sand */
+            --text-muted: #9CA3AF;    /* Cool Grey for secondary text */
             
-            --accent-main: #C6B36A;   /* Soft Moss Gold */
-            --accent-bright: #EBE0A8; /* Lighter gold for hover states/glows */
+            --accent-main: #E07A5F;   /* Burnt Apricot */
+            --accent-glow: #F4A261;   /* Brighter apricot for hover/glow */
             
             --easing: cubic-bezier(0.23, 1, 0.32, 1);
         }
@@ -30,9 +30,9 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            /* Updated radial gradient to Forest Green theme */
-            background: radial-gradient(circle at 50% -20%, var(--bg-light), var(--bg-dark) 80%);
+            background-color: var(--bg-core);
+            /* Radial gradient using Midnight Charcoal tones */
+            background: radial-gradient(circle at 50% -20%, var(--bg-lighter), var(--bg-core) 80%);
             color: var(--text-main);
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
@@ -59,7 +59,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.3; /* Slightly reduced opacity for the cream particles */
+            opacity: 0.3; 
             pointer-events: none;
         }
 
@@ -115,8 +115,8 @@
             line-height: 0.95;
             letter-spacing: -0.04em;
             margin-bottom: 1.5rem;
-            /* Gradient Text: Cream to muted Gold */
-            background: linear-gradient(180deg, var(--text-main) 0%, var(--accent-main) 100%);
+            /* Gradient Text: Soft Sand to Burnt Apricot */
+            background: linear-gradient(180deg, var(--text-main) 20%, var(--accent-main) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -143,7 +143,7 @@
             background: var(--accent-main);
             border-radius: 4px;
             animation: bounce 1.2s infinite ease-in-out;
-            box-shadow: 0 0 15px rgba(198, 179, 106, 0.4);
+            box-shadow: 0 0 15px rgba(224, 122, 95, 0.4); /* Apricot glow */
         }
 
         @keyframes bounce {
@@ -169,12 +169,12 @@
         .concept-visual {
             position: relative;
             height: 400px;
-            /* Darker green gradient for card background */
-            background: linear-gradient(135deg, var(--bg-light), #05100B);
+            /* Deep Charcoal card background */
+            background: linear-gradient(135deg, var(--bg-lighter), #000);
             border-radius: 20px;
-            border: 1px solid rgba(244, 239, 234, 0.1); /* Cream border */
+            border: 1px solid rgba(242, 232, 207, 0.1); /* Soft Sand border */
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -194,7 +194,7 @@
             position: relative;
             width: 200px;
             height: 200px;
-            background: #081610; /* Very dark green/black */
+            background: #111;
             border-radius: 50%;
             z-index: 10;
             box-shadow: 0 10px 40px rgba(0,0,0,0.6);
@@ -210,10 +210,10 @@
             width: 190px; height: 190px;
             border-radius: 50%;
             background: repeating-radial-gradient(
-                #0F2A1D 0, 
-                #0F2A1D 2px, 
-                #153325 3px, 
-                #153325 4px
+                #18181B 0, 
+                #18181B 2px, 
+                #252525 3px, 
+                #252525 4px
             );
         }
 
@@ -237,7 +237,7 @@
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--bg-dark);
+            background: #111;
             border-radius: 50%;
         }
 
@@ -307,12 +307,12 @@
         .cta-container {
             text-align: center;
             max-width: 600px;
-            background: rgba(244, 239, 234, 0.05); /* Very subtle cream tint */
+            background: rgba(242, 232, 207, 0.05); /* Subtle Sand tint */
             padding: 4rem 2rem;
             border-radius: 30px;
-            border: 1px solid rgba(198, 179, 106, 0.3); /* Gold border */
+            border: 1px solid rgba(224, 122, 95, 0.3); /* Apricot border */
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 100px rgba(15, 42, 29, 0.8);
+            box-shadow: 0 0 100px rgba(24, 24, 27, 0.8);
         }
 
         .cta-container h2 {
@@ -333,7 +333,7 @@
             width: 100%;
             padding: 1.2rem;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(244, 239, 234, 0.2);
+            border: 1px solid rgba(242, 232, 207, 0.2);
             border-radius: 12px;
             color: var(--text-main);
             font-family: inherit;
@@ -343,18 +343,18 @@
         }
 
         input[type="email"]::placeholder {
-            color: rgba(244, 239, 234, 0.5);
+            color: rgba(242, 232, 207, 0.5);
         }
 
         input[type="email"]:focus {
             border-color: var(--accent-main);
-            box-shadow: 0 0 20px rgba(198, 179, 106, 0.2);
+            box-shadow: 0 0 20px rgba(224, 122, 95, 0.2);
         }
 
         button.submit-btn {
             padding: 1.2rem;
             background: var(--accent-main);
-            color: #0F2A1D; /* Text dark green for contrast on gold button */
+            color: #18181B; /* Text charcoal for contrast */
             border: none;
             border-radius: 12px;
             font-weight: 700;
@@ -366,9 +366,9 @@
         }
 
         button.submit-btn:hover {
-            background: var(--accent-bright);
+            background: var(--accent-glow);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(198, 179, 106, 0.3);
+            box-shadow: 0 10px 30px rgba(224, 122, 95, 0.3);
         }
 
         .disclaimer {
@@ -472,7 +472,7 @@
     </section>
 
     <script>
-        // --- 1. Interactive Canvas Background (Subtle Particles) ---
+        // --- 1. Interactive Canvas Background (Particles) ---
         const canvas = document.getElementById('noise-canvas');
         const ctx = canvas.getContext('2d');
         
@@ -505,8 +505,8 @@
             }
 
             draw() {
-                // Update particle color to Soft Moss Gold: rgb(198, 179, 106)
-                ctx.fillStyle = `rgba(198, 179, 106, ${this.alpha})`;
+                // Burnt Apricot color (RGB: 224, 122, 95) with dynamic alpha
+                ctx.fillStyle = `rgba(224, 122, 95, ${this.alpha})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
