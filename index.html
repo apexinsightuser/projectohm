@@ -330,8 +330,8 @@
             font-weight: 600;
         }
 
-        /* Input Styling */
-        input[type="email"] {
+        /* Input Styling - Updated for Tel */
+        input[type="tel"] {
             width: 100%;
             padding: 1.2rem;
             background: rgba(15, 63, 66, 0.4);
@@ -344,9 +344,13 @@
             outline: none;
             margin-bottom: 1.5rem;
         }
-        input[type="email"]:focus {
+        input[type="tel"]:focus {
             border-color: var(--accent-gold);
             background: rgba(15, 63, 66, 0.6);
+        }
+
+        input[type="tel"]::placeholder {
+            color: rgba(251, 246, 238, 0.5);
         }
 
         /* Button Styling */
@@ -539,7 +543,7 @@
                 <form id="vibra-form" action="https://formspree.io/f/xdaakjnz" method="POST">
                     
                     <div class="step-1">
-                        <input type="email" name="email" id="email-input" placeholder="enter_email_address" required>
+                        <input type="tel" name="phone" id="phone-input" placeholder="enter_phone_number" required>
                         <button type="button" class="submit-btn" id="next-btn">Begin Intake Protocol</button>
                     </div>
 
@@ -721,17 +725,19 @@
         const step2 = document.querySelector('.step-2');
         const formContent = document.getElementById('form-content');
         const successMsg = document.getElementById('success-msg');
-        const emailInput = document.getElementById('email-input');
+        
+        // Changed to phone input
+        const phoneInput = document.getElementById('phone-input');
 
-        // Transition from Email to Questions
+        // Transition from Phone to Questions
         nextBtn.addEventListener('click', () => {
-            if(emailInput.checkValidity() && emailInput.value !== "") {
+            if(phoneInput.checkValidity() && phoneInput.value !== "") {
                 step1.style.display = 'none';
                 step2.style.display = 'block';
                 // Scroll to top of questions smoothly
                 document.getElementById('access').scrollIntoView({behavior: 'smooth'});
             } else {
-                emailInput.reportValidity();
+                phoneInput.reportValidity();
             }
         });
 
