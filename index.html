@@ -608,41 +608,41 @@
                         </div>
 
                         <div class="form-section-title">Section 3: Motivation</div>
-                        <label class="question-label">What would motivate you to share consistently?</label>
+                        <label class="question-label">What would motivate you to share consistently? (Select 2)</label>
                         <div class="option-group">
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Feeling understood" required>
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Feeling understood">
+                                <span class="checkmark"></span>
                                 Feeling understood for my taste
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Gaining status">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Gaining status">
+                                <span class="checkmark"></span>
                                 Gaining recognition or status
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Helping others">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Helping others">
+                                <span class="checkmark"></span>
                                 Helping others discover great music
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Strengthening relationships">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Strengthening relationships">
+                                <span class="checkmark"></span>
                                 Strengthening relationships with friends
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Self-expression">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Self-expression">
+                                <span class="checkmark"></span>
                                 Self-expression / identity building
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Habitual entertainment">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Habitual entertainment">
+                                <span class="checkmark"></span>
                                 Habitual entertainment
                             </label>
                             <label class="custom-option">
-                                <input type="radio" name="motivation" value="Wont share consistently">
-                                <span class="checkmark radio-mark"></span>
+                                <input type="checkbox" name="motivation" value="Wont share consistently">
+                                <span class="checkmark"></span>
                                 I wouldn’t share consistently
                             </label>
                         </div>
@@ -727,8 +727,6 @@
         const step2 = document.querySelector('.step-2');
         const formContent = document.getElementById('form-content');
         const successMsg = document.getElementById('success-msg');
-        
-        // Changed to phone input
         const phoneInput = document.getElementById('phone-input');
 
         // Transition from Phone to Questions
@@ -736,16 +734,15 @@
             if(phoneInput.checkValidity() && phoneInput.value !== "") {
                 step1.style.display = 'none';
                 step2.style.display = 'block';
-                // Scroll to top of questions smoothly
                 document.getElementById('access').scrollIntoView({behavior: 'smooth'});
             } else {
                 phoneInput.reportValidity();
             }
         });
 
-        // Limit Checkboxes to 3
-        const checkboxes = document.querySelectorAll('input[name="features"]');
-        checkboxes.forEach(box => {
+        // Limit Checkboxes for Features (Max 3)
+        const featuresCheckboxes = document.querySelectorAll('input[name="features"]');
+        featuresCheckboxes.forEach(box => {
             box.addEventListener('change', () => {
                 const checked = document.querySelectorAll('input[name="features"]:checked');
                 if (checked.length > 3) {
@@ -754,7 +751,18 @@
             });
         });
 
-        // --- NEW: Map slider 0-6 to Frequency Text ---
+        // Limit Checkboxes for Motivation (Max 2)
+        const motivationCheckboxes = document.querySelectorAll('input[name="motivation"]');
+        motivationCheckboxes.forEach(box => {
+            box.addEventListener('change', () => {
+                const checked = document.querySelectorAll('input[name="motivation"]:checked');
+                if (checked.length > 2) {
+                    box.checked = false;
+                }
+            });
+        });
+
+        // Map slider 0-6 to Frequency Text
         const frequencyLabels = [
             "Never",
             "Once per month",
@@ -773,6 +781,14 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.querySelector('button[type="submit"]');
+
+            // VALIDATION: Section 3 must have exactly 2 selected
+            const motivationChecked = document.querySelectorAll('input[name="motivation"]:checked').length;
+            if (motivationChecked !== 2) {
+                alert("Please select exactly 2 options in Section 3 (Motivation).");
+                return; // Stop submission
+            }
+
             submitBtn.innerText = "Transmitting...";
             submitBtn.disabled = true;
 
