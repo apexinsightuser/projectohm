@@ -382,7 +382,7 @@
             gap: 15px;
             margin-bottom: 2rem;
         }
-        .slider-wrapper span { font-size: 0.8rem; opacity: 0.7; }
+        .slider-wrapper span { font-size: 0.8rem; opacity: 0.7; flex: 0 0 auto;}
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
@@ -549,14 +549,16 @@
 
                     <div class="step-2">
                         
-                        <div class="form-section-title">Section 1: Status Sensitivity</div>
-                        <label class="question-label">How important is exclusivity in a music-sharing app to you?</label>
+                        <div class="form-section-title">Section 1: User Engagement & Sharing Frequency</div>
+                        <label class="question-label">If this product were available today, how frequently would you expect to share music?</label>
                         <div class="slider-wrapper">
-                            <span>Not Important (1)</span>
-                            <input type="range" name="exclusivity_score" min="1" max="7" value="4" oninput="document.getElementById('slider-val').innerText = this.value">
-                            <span>Extremely (7)</span>
+                            <span>Never (0)</span>
+                            <input type="range" name="sharing_frequency" min="0" max="6" value="3" oninput="updateFrequencyLabel(this.value)">
+                            <span>Multiple Daily (6)</span>
                         </div>
-                        <div style="text-align: center; color: var(--accent-gold); font-weight: bold; margin-bottom: 2rem;">Selected: <span id="slider-val">4</span></div>
+                        <div style="text-align: center; color: var(--accent-gold); font-weight: bold; margin-bottom: 2rem;">
+                            Selected: <span id="slider-val">Once per week</span>
+                        </div>
 
                         <div class="form-section-title">Section 2: Functionality</div>
                         <label class="question-label">Which features would make you return regularly? (Select up to 3)</label>
@@ -751,6 +753,21 @@
                 }
             });
         });
+
+        // --- NEW: Map slider 0-6 to Frequency Text ---
+        const frequencyLabels = [
+            "Never",
+            "Once per month",
+            "A few times per month",
+            "Once per week",
+            "2–3 times per week",
+            "Nearly daily",
+            "Multiple times per day"
+        ];
+
+        function updateFrequencyLabel(val) {
+            document.getElementById('slider-val').innerText = frequencyLabels[val];
+        }
 
         // Formspree Submission AJAX
         form.addEventListener('submit', async (e) => {
